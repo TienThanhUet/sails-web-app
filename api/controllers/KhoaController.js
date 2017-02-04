@@ -7,7 +7,7 @@
 
 module.exports = {
   addSinhVien:function (req,res) {
-
+    return res.view('KhoaViews/addSinhVien',{username:req.session.username})
   }
 };
 

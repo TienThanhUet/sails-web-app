@@ -31,16 +31,22 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
+  // xac thuc va dang nhap
   '/':'UserController.homepage',
   'GET /login':'UserController.login',
   'POST /authenticate': 'UserController.authenticate',
   'GET /logout': 'UserController.logout',
-  'GET /upload-file-diem':'FileController.fileDiem',
   'GET /account':'UserController.account',
   //==============================
+  // xu ly file
+  'GET /upload-file-diem':'FileController.fileDiem',
+  'POST /upload-file-diem':'FileController.uploadFileDiem',
+  //==============================
+  // quan ly thong bao
+  'GET /manager-notification': 'NotificationController.showNotification',
+  //==============================
   // khoa router
-  '/khoa/add-sinh-vien':'KhoaController.addSinhVien'
+  '/khoa/add-sinh-vien':'KhoaController.addSinhVien',
 
   /***************************************************************************
   *                                                                          *

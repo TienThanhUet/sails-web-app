@@ -6,6 +6,8 @@
  */
 
 module.exports = {
-	
+  showNotification:function(req,res){
+    res.view('managerNotification',{username:req.session.username});
+  }
 };
 
