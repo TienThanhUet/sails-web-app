@@ -1,6 +1,5 @@
 var FormFileUpload = function () {
 
-
     return {
         //main function to initiate the module
         init: function () {
@@ -10,10 +9,10 @@ var FormFileUpload = function () {
                 disableImageResize: false,
                 autoUpload: false,
                 disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator.userAgent),
-                maxFileSize: 5000000,
-                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                maxFileSize: 10000000,
+                acceptFileTypes: /(\.|\/)(doc|docx|pdf|xlsx|xls)$/i,
                 // Uncomment the following to send cross-domain cookies:
-                //xhrFields: {withCredentials: true},                
+                //xhrFields: {withCredentials: true},
             });
 
             // Enable iframe cross-domain access via redirect option:
