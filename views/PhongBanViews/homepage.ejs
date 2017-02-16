@@ -162,27 +162,26 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div id="data-repeater-item">
                           <select id="loaithongbao" name="loaithongbao[0]" class="form-control form-filter input-sm category_notif"
                                   style="margin-bottom: 5px;">
-                            <option value='TatCa'>Select...</option>
-                            <option value='1'>Điểm Thi</option>
-                            <option value='2'>Lịch Thi</option>
-                            <option value='3'>Lịch Học</option>
-                            <!--<option value=''>Học Bổng</option>-->
-                            <!--<option value=''>Tài Chính</option>-->
-                            <!--<option value=''>Tuyển sinh</option>-->
-                            <!--<option value=''>Tuyển dụng</option>-->
-                            <!--<option value=''>Thực Tập</option>-->
-                            <!--<option value=''>Các Cuộc Thi</option>-->
-                            <!--<option value=''>Hội Thảo , Nghiên Cứu</option>-->
-                            <!--<option value=''>Quy chế, Quy định mới</option>-->
-                            <!--<option value=''>Kết Quả Học Tập</option>-->
-                            <!--<option value=''>Triệu Tập</option>-->
-                            <!--<option value=''>Java</option>-->
-                            <!--<option value=''>PHP</option>-->
-                            <!--<option value=''>Android</option>-->
-                            <!--<option value=''>Nodejs</option>-->
-                            <!--<option value=''>JavaScript</option>-->
-                            <!--<option value=''>C/C++</option>-->
+                            <% loaithongbaos.forEach(function(loaithongbao) { %>
+                            <option value="<%=loaithongbao._id%>"><%= loaithongbao.tenLoaiThongBao %></option>
+                            <% }); %>
                           </select>
+                          <!--<option value=''>Học Bổng</option>-->
+                          <!--<option value=''>Tài Chính</option>-->
+                          <!--<option value=''>Tuyển sinh</option>-->
+                          <!--<option value=''>Tuyển dụng</option>-->
+                          <!--<option value=''>Thực Tập</option>-->
+                          <!--<option value=''>Các Cuộc Thi</option>-->
+                          <!--<option value=''>Hội Thảo , Nghiên Cứu</option>-->
+                          <!--<option value=''>Quy chế, Quy định mới</option>-->
+                          <!--<option value=''>Kết Quả Học Tập</option>-->
+                          <!--<option value=''>Triệu Tập</option>-->
+                          <!--<option value=''>Java</option>-->
+                          <!--<option value=''>PHP</option>-->
+                          <!--<option value=''>Android</option>-->
+                          <!--<option value=''>Nodejs</option>-->
+                          <!--<option value=''>JavaScript</option>-->
+                          <!--<option value=''>C/C++</option>-->
                         </div>
                         <button class="btn btn-success " onclick="addAttribute()">
                           <i class="fa fa-plus"></i> Add
@@ -193,9 +192,9 @@ License: You must have a valid license purchased only from themeforest(the above
                       </td>
                       <td>
                         <select id="mucdothongbao" name="mucdothongbao" class="form-control form-filter input-sm">
-                          <option value="3" style="background: #4B77BE">Bình Thường</option>
-                          <option value="1" style="background: #F7CA18">Quan trọng</option>
-                          <option value="2" style="background: #D91E18">Khẩn</option>
+                          <% mucdothongbaos.forEach(function(mucdothongbao) { %>
+                          <option value="<%=mucdothongbao._id%>"><%= mucdothongbao.tenMucDoThongBao %></option>
+                          <% }); %>
                         </select>
                       </td>
                       <td>

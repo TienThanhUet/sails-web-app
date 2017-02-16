@@ -10,18 +10,23 @@ module.exports = {
   homepage: function (req, res) {
     var funcLopchinhs = Promise.promisify(LopChinhAPI.listLopChinh);
     var funcLopMonHocs = Promise.promisify(LopMonHocAPI.listLopMonHoc);
-    Promise.all([funcLopchinhs({token: req.session.token}),funcLopMonHocs({token: req.session.token})])
-      .spread(function (body1,body2) {
+    var funcLoaiThongBao = Promise.promisify(LoaiThongBaoAPI.listLoaiThongBao);
+    var funcMucDoThongBao = Promise.promisify(MucDoThongBaoAPI.listMucDoThongBao);
+    Promise.all([funcLopchinhs({token: req.session.token}),funcLopMonHocs({token: req.session.token}),funcLoaiThongBao({token: req.session.token}),funcMucDoThongBao({token: req.session.token})])
+      .spread(function (body1,body2,body3,body4) {
         var lopchinhs = JSON.parse(body1);
             // console.log(body1);
         var lopMonHocs = JSON.parse(body2);
             // console.log(body2);
+        var loaithongbaos = JSON.parse(body3);
+        var mucdothongbaos = JSON.parse(body4);
+
         if (req.session.role == 'GiangVien')
-              return res.view('GiangVienViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs,lopchinhs:lopchinhs,token:req.session.token});//chuyen den trang giang vien
+              return res.view('GiangVienViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs,lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token});//chuyen den trang giang vien
             if (req.session.role == 'Khoa')
-              return res.view('KhoaViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs, lopchinhs:lopchinhs,token:req.session.token});// chuyen den trang khoa
+              return res.view('KhoaViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs, lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token});// chuyen den trang khoa
             if (req.session.role == 'PhongBan')
-              return res.view('PhongBanViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs, lopchinhs:lopchinhs,token:req.session.token});//chuyen den trang phong ban
+              return res.view('PhongBanViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs, lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token});//chuyen den trang phong ban
 
       })
       .catch(function (err) {
