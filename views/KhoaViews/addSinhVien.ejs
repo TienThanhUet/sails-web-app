@@ -140,10 +140,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="form-body">
                   <div class="form-group form-md-line-input">
                     <select class="select2_category form-control" data-placeholder="Choose a Category" tabindex="1">
-                      <option value="Category 1">Category 1</option>
-                      <option value="Category 2">Category 2</option>
-                      <option value="Category 3">Category 5</option>
-                      <option value="Category 4">Category 4</option>
+                      <% lopchinhs.forEach(function(lopchinh) { %>
+                      <option><%= lopchinh.tenLopChinh %></option>
+                      <% }); %>
                     </select>
                     <label for="form_control_1">Lớp Chính Quy</label>
                     <span class="help-block">Some help goes here...</span>

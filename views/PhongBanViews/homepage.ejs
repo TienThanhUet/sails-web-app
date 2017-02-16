@@ -42,15 +42,17 @@ License: You must have a valid license purchased only from themeforest(the above
           <a href="#">Home</a><i class="fa fa-circle"></i>
         </li>
         <li class="active">
-          Bảng Điều Khiển       </li>
+          Bảng Điều Khiển
+        </li>
       </ul>
       <!-- END PAGE BREADCRUMB -->
       <!-- BEGIN PAGE CONTENT INNER -->
       <div class="row">
         <div class="col-md-12">
           <div class="note note-danger note-bordered" style="display: none">
-            <p >
-              NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
+            <p>
+              NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated
+              for demo purposes only.
             </p>
           </div>
           <!-- Begin: life time stats -->
@@ -59,7 +61,7 @@ License: You must have a valid license purchased only from themeforest(the above
               <div class="caption">
                 <i class="fa fa-gift font-green-sharp"></i>
                 <span class="caption-subject font-green-sharp bold uppercase">THÊM THÔNG BÁO</span>
-                <span class="caption-helper">manage notificatin...</span>
+                <span class="caption-helper">Add notificatin...</span>
               </div>
               <div class="actions">
                 <a href="javascript:;" class="btn btn-default btn-circle">
@@ -99,93 +101,115 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <div class="portlet-body">
               <div class="table-container ">
+                <!--<form id="#fileupload" action="/send-notification" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">-->
+                <p id="value_token" style="display: none;"><%=token%></p>
                 <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
-                  <input type="text" class="form-control form-filter input-sm" readonly name="order_date_from" placeholder="From">
-                  <span class="input-group-btn">
+                    <input type="text" class="form-control form-filter input-sm" readonly name="datesend"
+                           placeholder="From">
+                    <span class="input-group-btn">
 											<button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
 											</span>
-                </div>
-                <table class="table table-striped table-bordered table-hover" id="datatable_ajax" >
-                  <thead>
-                  <tr role="row" class="heading">
-                    <th width="15%">
-                      Đối Tượng
-                    </th>
-                    <th widtĐh="42%">
-                      Tiêu Đề
-                    </th>
-                    <th width="20%">
-                      Thuộc Tính
-                    </th>
-                    <th width="15%">
-                      Trạng Thái
-                    </th>
-                    <th width="8%">
-                      Hành Động
-                    </th>
-                  </tr>
-                  <tr role="row" class="filter">
-                    <td>
-                        <select  name="order_status" class="form-control form-filter input-sm " style="margin-bottom: 5px;">
-                          <option value="">Select...</option>
-                          <option value="pending">Toàn Khoa</option>
-                          <option value="closed">Lớp</option>
-                          <option value="hold">Sinh Viên</option>
-                          <option value="fraud">Lớp Môn Học</option>
+                  </div>
+                  <table class="table table-striped table-bordered table-hover" id="datatable_ajax">
+                    <thead>
+                    <tr role="row" class="heading">
+                      <th width="15%">
+                        Đối Tượng
+                      </th>
+                      <th widtĐh="42%">
+                        Tiêu Đề
+                      </th>
+                      <th width="20%">
+                        Loại Thông Báo
+                      </th>
+                      <th width="15%">
+                        Trạng Thái
+                      </th>
+                      <th width="8%">
+                        Hành Động
+                      </th>
+                    </tr>
+                    <tr role="row" class="filter">
+                      <td>
+                        <select id="receiver" name="categoryreceiver"
+                                class="form-control form-filter input-sm " style="margin-bottom: 5px;">
+                          <option value="undefine receiver">Select...</option>
+                          <option value="khoa">Toàn Khoa</option>
+                          <option value="lop">Lớp</option>
+                          <option value="sinhvien">Sinh Viên</option>
+                          <option value='lopmonhoc'>Lớp Môn Học</option>
                         </select>
-                    </td>
-                    <td>
-                      <textarea type="text" class="form-control form-filter input-sm" name="order_customer_name" style=" height: 100px !important;"></textarea>
-                    </td>
-                    <td>
-                      <div data-repeater-item id="data-repeater-item">
-                        <select  name="order_status" class="form-control form-filter input-sm " style="margin-bottom: 5px;">
-                          <option value="">Select...</option>
-                          <option value="pending">Học Bổng</option>
-                          <option value="closed">Tài Chính</option>
-                          <option value="hold">Tuyển sinh</option>
-                          <option value="fraud">Tuyển dụng</option>
-                          <option value="fraud">Thực Tập</option>
-                          <option value="fraud">Các Cuộc Thi</option>
-                          <option value="fraud">Hội Thảo , Nghiên Cứu</option>
-                          <option value="fraud">Quy chế, Quy định mới</option>
-                          <option value="fraud">Kết Quả Học Tập</option>
-                          <option value="fraud">Triệu Tập</option>
-                          <option value="fraud">Java</option>
-                          <option value="fraud">PHP</option>
-                          <option value="fraud">Android</option>
-                          <option value="fraud">Nodejs</option>
-                          <option value="fraud">JavaScript</option>
-                          <option value="fraud">C/C++</option>
-                      </select>
-                      </div>
-                      <div style="float: left; width: 45%">
-                        <p  data-repeater-create class="btn btn-success mt-repeater-add" >
-                          <i class="fa fa-plus" ></i> Add</p>
-                      </div>
-                      <p data-repeater-delete class="btn btn-danger mt-repeater-delete" >
-                        <i class="fa fa-close" ></i> Delete</p>\
-                    </td>
-                    <td>
-                      <select name="order_status" class="form-control form-filter input-sm">
-                        <option value="pending" style="background: #4B77BE">Bình Thường </option>
-                        <option value="closed" style="background: #F7CA18">Quan trọng </option>
-                        <option value="hold" style="background: #D91E18">Khẩn</option>
-                      </select>
-                    </td>
-                    <td>
-                      <div class="margin-bottom-5">
-                        <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-send"></i> GỬI</button>
-                      </div>
-                      <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>XÓA</button>
-                    </td>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-                <div class="portlet-body form">
-                  <form class="form-horizontal form-bordered">
+                        <select id="lopchinhs" class="select2_category " name="receiverlopchinh" data-placeholder="Choose a Category"
+                                tabindex="1"
+                                style="float:right;">
+                          <% lopchinhs.forEach(function(lopchinh) { %>
+                          <option value="<%= lopchinh._id %>"><%= lopchinh.tenLopChinh %></option>
+                          <% }); %>
+                        </select>
+                        <select id="lopmonhocs" class="select2_category " name="receiverlopmonhoc" data-placeholder="Choose a Category"
+                                tabindex="1" style="float:right;">
+                          <% lopmonhocs.forEach(function(lopmonhoc) { %>
+                          <option value="<%=lopmonhoc._id%>"><%= lopmonhoc.tenLopMonHoc + " " + lopmonhoc._id %></option>
+                          <% }); %>
+                        </select>
+
+                      </td>
+                      <td>
+                      <textarea id="tieude" type="text" class="form-control form-filter input-sm" name="tieude"
+                                style=" height: 100px !important;"></textarea>
+                      </td>
+                      <td>
+                        <div id="data-repeater-item">
+                          <select id="loaithongbao" name="loaithongbao[0]" class="form-control form-filter input-sm category_notif"
+                                  style="margin-bottom: 5px;">
+                            <option value='TatCa'>Select...</option>
+                            <option value='1'>Điểm Thi</option>
+                            <option value='2'>Lịch Thi</option>
+                            <option value='3'>Lịch Học</option>
+                            <!--<option value=''>Học Bổng</option>-->
+                            <!--<option value=''>Tài Chính</option>-->
+                            <!--<option value=''>Tuyển sinh</option>-->
+                            <!--<option value=''>Tuyển dụng</option>-->
+                            <!--<option value=''>Thực Tập</option>-->
+                            <!--<option value=''>Các Cuộc Thi</option>-->
+                            <!--<option value=''>Hội Thảo , Nghiên Cứu</option>-->
+                            <!--<option value=''>Quy chế, Quy định mới</option>-->
+                            <!--<option value=''>Kết Quả Học Tập</option>-->
+                            <!--<option value=''>Triệu Tập</option>-->
+                            <!--<option value=''>Java</option>-->
+                            <!--<option value=''>PHP</option>-->
+                            <!--<option value=''>Android</option>-->
+                            <!--<option value=''>Nodejs</option>-->
+                            <!--<option value=''>JavaScript</option>-->
+                            <!--<option value=''>C/C++</option>-->
+                          </select>
+                        </div>
+                        <button class="btn btn-success " onclick="addAttribute()">
+                          <i class="fa fa-plus"></i> Add
+                        </button>
+                        <button class="btn btn-danger " onclick="deleteAttribute()">
+                          <i class="fa fa-close"></i> Delete
+                        </button>
+                      </td>
+                      <td>
+                        <select id="mucdothongbao" name="mucdothongbao" class="form-control form-filter input-sm">
+                          <option value="3" style="background: #4B77BE">Bình Thường</option>
+                          <option value="1" style="background: #F7CA18">Quan trọng</option>
+                          <option value="2" style="background: #D91E18">Khẩn</option>
+                        </select>
+                      </td>
+                      <td>
+                        <div class="margin-bottom-5">
+                          <div onclick="sendNotification()" class="btn btn-sm yellow  margin-bottom" ><i class="fa fa-send"></i> GỬI </div>
+                        </div>
+                        <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>XÓA</button>
+                      </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                  <div class="portlet-body form">
                     <div class="form-body">
                       <div class="form-group">
                         <div class="col-md-12">
@@ -194,9 +218,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                       </div>
                     </div>
-                  </form>
-                </div>
-                <input type="file" class="btn btn-primary "  name="files[]" multiple="">
+                  </div>
+                  <div id="file-repeater">
+                    <input type='file' id="firstfile" class='btn btn-primary file_push' name='files[0]' multiple=''/></div>
+                  <i class="fa fa-plus btn btn-success " onclick="addFileNoti()">Add</i>
+                  <i class="fa fa-close btn btn-danger" onclick="deleteFileNoti()">Delete</i>
+                <!--</form>-->
               </div>
             </div>
           </div>
@@ -204,812 +231,6 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
       </div>
 
-
-      <!-- BEGIN EXAMPLE TABLE PORTLET-->
-      <div class="portlet light">
-        <div class="portlet-title">
-          <div class="caption">
-            <i class="fa fa-cogs font-green-sharp"></i>
-            <span class="caption-subject font-green-sharp bold uppercase">Hiện/Ẩn Cột</span>
-          </div>
-          <div class="actions btn-set">
-            <div class="btn-group">
-              <a class="btn green-haze btn-circle" href="javascript:;" data-toggle="dropdown">
-                <!--<i class="fa fa-check-circle"></i>-->
-                Columns <i class="fa fa-angle-down"></i>
-              </a>
-              <ul class="dropdown-menu pull-right" id="sample_4_column_toggler">
-                <li>
-                  <label><input type="checkbox" checked data-column="1">Ngày Tháng</label>
-                </li>
-                <li>
-                  <label><input type="checkbox" checked data-column="2">Tiêu đề</label>
-                </li>
-                <li>
-                  <label><input type="checkbox" checked data-column="3">Nội dung</label>
-                </li>
-                <li>
-                  <label><input type="checkbox" checked data-column="4">Thuộc tính</label>
-                </li>
-                <li>
-                  <label><input type="checkbox" checked data-column="5">Trạng thái</label>
-                </li>
-              </ul>
-            </div>
-            <!--  Old Version
-                            <div class="btn-group">
-                                <a class="btn default" href="javascript:;" data-toggle="dropdown">
-                                Columns <i class="fa fa-angle-down"></i>
-                                </a>
-                                <div id="sample_4_column_toggler" class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
-                                    <label><input type="checkbox" checked data-column="0">Rendering engine</label>
-                                    <label><input type="checkbox" checked data-column="1">Browser</label>
-                                    <label><input type="checkbox" checked data-column="2">Platform(s)</label>
-                                    <label><input type="checkbox" checked data-column="3">Engine version</label>
-                                    <label><input type="checkbox" checked data-column="4">CSS grade</label>
-                                </div>
-                            </div>
-                            -->
-          </div>
-        </div>
-        <div class="portlet-body">
-          <table class="table table-striped table-bordered table-hover" id="sample_4">
-            <thead>
-            <tr>
-              <th>
-                Ngày Tháng
-              </th>
-              <th>
-                Tiêu đề
-              </th>
-              <th class="hidden-xs">
-                Nội dung
-              </th>
-              <th class="hidden-xs">
-                Thuộc tính
-              </th>
-              <th class="hidden-xs">
-                Trạng thái
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                Internet Explorer 4.0
-              </td>
-              <td>
-                Win 95+
-              </td>
-              <td>
-                4
-              </td>
-              <td>
-                X
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                Internet Explorer 5.0
-              </td>
-              <td>
-                Win 95+
-              </td>
-              <td>
-                5
-              </td>
-              <td>
-                C
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                Internet Explorer 5.5
-              </td>
-              <td>
-                Win 95+
-              </td>
-              <td>
-                5.5
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                Internet Explorer 6
-              </td>
-              <td>
-                Win 98+
-              </td>
-              <td>
-                6
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                Internet Explorer 7
-              </td>
-              <td>
-                Win XP SP2+
-              </td>
-              <td>
-                7
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                AOL browser (AOL desktop)
-              </td>
-              <td>
-                Win XP
-              </td>
-              <td>
-                6
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Firefox 1.0
-              </td>
-              <td>
-                Win 98+ / OSX.2+
-              </td>
-              <td>
-                1.7
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Firefox 1.5
-              </td>
-              <td>
-                Win 98+ / OSX.2+
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Firefox 2.0
-              </td>
-              <td>
-                Win 98+ / OSX.2+
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Firefox 3.0
-              </td>
-              <td>
-                Win 2k+ / OSX.3+
-              </td>
-              <td>
-                1.9
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Camino 1.0
-              </td>
-              <td>
-                OSX.2+
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Camino 1.5
-              </td>
-              <td>
-                OSX.3+
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Netscape 7.2
-              </td>
-              <td>
-                Win 95+ / Mac OS 8.6-9.2
-              </td>
-              <td>
-                1.7
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Netscape Browser 8
-              </td>
-              <td>
-                Win 98SE+
-              </td>
-              <td>
-                1.7
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Netscape Navigator 9
-              </td>
-              <td>
-                Win 98+ / OSX.2+
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.0
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                1
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.1
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                1.1
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.2
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                1.2
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.3
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                1.3
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.4
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                1.4
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.5
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                1.5
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.6
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                1.6
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.7
-              </td>
-              <td>
-                Win 98+ / OSX.1+
-              </td>
-              <td>
-                1.7
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Mozilla 1.8
-              </td>
-              <td>
-                Win 98+ / OSX.1+
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Seamonkey 1.1
-              </td>
-              <td>
-                Win 98+ / OSX.2+
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gecko
-              </td>
-              <td>
-                Epiphany 2.20
-              </td>
-              <td>
-                Gnome
-              </td>
-              <td>
-                1.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Webkit
-              </td>
-              <td>
-                Safari 1.2
-              </td>
-              <td>
-                OSX.3
-              </td>
-              <td>
-                125.5
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Webkit
-              </td>
-              <td>
-                Safari 1.3
-              </td>
-              <td>
-                OSX.3
-              </td>
-              <td>
-                312.8
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Webkit
-              </td>
-              <td>
-                Safari 2.0
-              </td>
-              <td>
-                OSX.4+
-              </td>
-              <td>
-                419.3
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Webkit
-              </td>
-              <td>
-                Safari 3.0
-              </td>
-              <td>
-                OSX.4+
-              </td>
-              <td>
-                522.1
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Webkit
-              </td>
-              <td>
-                OmniWeb 5.5
-              </td>
-              <td>
-                OSX.4+
-              </td>
-              <td>
-                420
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Webkit
-              </td>
-              <td>
-                iPod Touch / iPhone
-              </td>
-              <td>
-                iPod
-              </td>
-              <td>
-                420.1
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Webkit
-              </td>
-              <td>
-                S60
-              </td>
-              <td>
-                S60
-              </td>
-              <td>
-                413
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera 7.0
-              </td>
-              <td>
-                Win 95+ / OSX.1+
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera 7.5
-              </td>
-              <td>
-                Win 95+ / OSX.2+
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera 8.0
-              </td>
-              <td>
-                Win 95+ / OSX.2+
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera 8.5
-              </td>
-              <td>
-                Win 95+ / OSX.2+
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera 9.0
-              </td>
-              <td>
-                Win 95+ / OSX.3+
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera 9.2
-              </td>
-              <td>
-                Win 88+ / OSX.3+
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera 9.5
-              </td>
-              <td>
-                Win 88+ / OSX.3+
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Opera for Wii
-              </td>
-              <td>
-                Wii
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Nokia N800
-              </td>
-              <td>
-                N800
-              </td>
-              <td>
-                -
-              </td>
-              <td>
-                A
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Presto
-              </td>
-              <td>
-                Nintendo DS browser
-              </td>
-              <td>
-                Nintendo DS
-              </td>
-              <td>
-                8.5
-              </td>
-              <td>
-                C/A<sup>1</sup>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- END EXAMPLE TABLE PORTLET-->
       <!-- END PAGE CONTENT INNER -->
     </div>
   </div>
@@ -1020,7 +241,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <% include ./../partials/footer.ejs %>
 </body>
 <style>
-  #datatable_ajax_wrapper .row{
+  #datatable_ajax_wrapper .row {
     display: none;
   }
 </style>

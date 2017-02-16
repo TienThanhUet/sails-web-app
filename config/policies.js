@@ -63,5 +63,8 @@ module.exports.policies = {
   },
   PhongBanController:{
     '*':'PhongBanAuth'
+  },
+  NotificationController:{
+    '*': 'sessionAuth'
   }
 };

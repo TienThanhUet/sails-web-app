@@ -10,7 +10,7 @@ var async = require('async');
 module.exports = {
 
   fileDiem: function (req, res) {
-    return res.view('fileupload', {username: req.session.username})
+    return res.view('fileDiem', {username: req.session.username})
   },
   uploadFileDiem: function (req, res) {
     req.file('filediem').upload({
@@ -76,7 +76,7 @@ module.exports = {
               rowSTT: beginFromNuberRow,//so thu tu cua hang chua 'STT'
               colSTT: kq.begin //cot exel chua 'STT'
             }
-            console.log(result);
+            // console.log(result);
 
             callback(null, result);
           },
@@ -144,14 +144,12 @@ module.exports = {
             for (var i = kq.beginSV; i < kq.endSV; i++) {
               // var dem=0;
               var object = new Object({
-                STT: worksheet[gan[0] + i].v,
+                tenLopMonHoc:infomationLopMonHoc.tenLopMonHoc,
                 MSV: worksheet[gan[1] + i].v,
-                HoTen: worksheet[gan[2] + i].v,
-                NgaySinh: worksheet[gan[3] + i].v,
-                LopChinh: worksheet[gan[4] + i].v,
                 diemThanhPhan: worksheet[gan[5] + i].v,
                 diemCuoiKi: worksheet[gan[6] + i].v,
-                tongDiem: worksheet[gan[7] + i].v
+                tongDiem: worksheet[gan[7] + i].v,
+                tenGiangVien:infomationLopMonHoc.tenGiangVien,
               })
               Objects.push(object);
             }
@@ -164,6 +162,9 @@ module.exports = {
             console.error(err);
           }
           console.log(result);
+          FileAPI.sendScores({token:req.session.token,listdiem:result},function (err,body) {
+            console.log(body);
+          })
         })
       });
 

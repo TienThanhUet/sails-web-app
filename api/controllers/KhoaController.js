@@ -7,7 +7,11 @@
 
 module.exports = {
   addSinhVien:function (req,res) {
-    return res.view('KhoaViews/addSinhVien',{username:req.session.username})
+    LopChinhAPI.listLopChinh({token: req.session.token},function (err,body) {
+      var content=JSON.parse(body);
+      console.log(body);
+      return res.view('KhoaViews/addSinhVien',{username:req.session.username,lopchinhs:content});
+    })
   }
 };
 

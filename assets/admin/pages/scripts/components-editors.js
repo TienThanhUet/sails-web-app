@@ -1,5 +1,5 @@
 var ComponentsEditors = function () {
-    
+
     var handleWysihtml5 = function () {
         if (!jQuery().wysihtml5) {
             return;
@@ -13,7 +13,9 @@ var ComponentsEditors = function () {
     }
 
     var handleSummernote = function () {
-        $('#summernote_1').summernote({height: 300});
+        $('#summernote_1').summernote({height: 200});
+        var markupStr = "Đường link liên kết :";
+      $('#summernote_1').code(markupStr);
         //API:
         //var sHTML = $('#summernote_1').code(); // get code
         //$('#summernote_1').destroy(); // destroy

@@ -44,6 +44,7 @@ module.exports.routes = {
   //==============================
   // quan ly thong bao
   'GET /manager-notification': 'NotificationController.showNotification',
+  'POST /send-notification': 'NotificationController.sendNotification',
   //==============================
   // khoa router
   '/khoa/add-sinh-vien':'KhoaController.addSinhVien',
