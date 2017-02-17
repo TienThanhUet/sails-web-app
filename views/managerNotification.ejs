@@ -127,7 +127,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 Nội dung
               </th>
               <th class="hidden-xs">
-                Thuộc tính
+                Loại Thông Báo
               </th>
               <th class="hidden-xs">
                 Trạng thái
@@ -135,40 +135,26 @@ License: You must have a valid license purchased only from themeforest(the above
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                Internet Explorer 4.0
-              </td>
-              <td>
-                Win 95+
-              </td>
-              <td>
-                4
-              </td>
-              <td>
-                X
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Trident
-              </td>
-              <td>
-                Internet Explorer 4.0
-              </td>
-              <td>
-                Win 95+
-              </td>
-              <td>
-                4
-              </td>
-              <td>
-                X
-              </td>
-            </tr>
+            <% notifs.forEach(function (notif) { %>
+              <tr>
+                <td>
+                <%=notif.time %>
+                </td>
+                <td>
+                <%=notif.tieuDe %>
+                </td>
+                <td>
+                <%=notif.noiDung %>
+                </td>
+                <td>
+                  <%=notif.idLoaiThongBao.tenLoaiThongBao %>
+                </td>
+                <td>
+                  .......
+                </td>
+              </tr>
+            <% }); %>
+
             </tbody>
           </table>
         </div>

@@ -13,5 +13,12 @@ module.exports={
     }
     callback(null,body);
     });
+  },
+
+  listNotification:function (option,callback) {
+    request(' http://localhost:3000/thongbao?token=' + option.token, function (error, response, body) {
+      // console.log(body);
+      callback(null, body);
+    })
   }
 }

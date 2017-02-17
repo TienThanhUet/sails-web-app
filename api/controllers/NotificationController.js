@@ -11,7 +11,12 @@ var async = require('async');
 
 module.exports = {
   showNotification: function (req, res) {
-    res.view('managerNotification', {username: req.session.username});
+    var funcNotif=Promise.promisify(NotificationAPI.listNotification);
+    funcNotif({token:req.session.token}).then(function (body) {
+      var notifs=JSON.parse(body);
+      // console.log(notifs);
+      res.view('managerNotification', {username: req.session.username,notifs:notifs});
+    })
   },
   sendNotification: function (req, res) {
     console.log(req.body);

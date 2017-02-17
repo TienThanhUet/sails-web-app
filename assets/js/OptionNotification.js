@@ -54,7 +54,7 @@ function sendNotification() {
   // arr loai thong bao
   formData.append("idLoaiThongBao" , arrLoaiThongBao);
   // muc do thong bao
-  formData.append("mucDoThongBao" ,$('#mucdothongbao').val());
+  formData.append("idMucDoThongBao" ,$('#mucdothongbao').val());
   // noi dung
   formData.append("noiDung",$('#summernote_1').code());
   var file_data=document.getElementsByClassName("file_push");
