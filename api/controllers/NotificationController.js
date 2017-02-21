@@ -14,8 +14,7 @@ module.exports = {
     var funcNotif=Promise.promisify(NotificationAPI.listNotification);
     funcNotif({token:req.session.token}).then(function (body) {
       var notifs=JSON.parse(body);
-      // console.log(notifs);
-      res.view('managerNotification', {username: req.session.username,notifs:notifs});
+      res.view(req.session.role+'Views/managerNotification', {username: req.session.username,notifs:notifs});
     })
   },
   sendNotification: function (req, res) {
@@ -84,7 +83,8 @@ module.exports = {
         console.log(err);
       }
       notification.arrayFile=arrFile;
-      NotificationAPI.sendNotification({token:req.session.token,formData:notification},function (err,body) {
+      var role=req.session.role.toString().toLowerCase();
+      NotificationAPI.sendNotification({token:req.session.token,role:role,formData:notification},function (err,body) {
         console.log(body);
       })
     })

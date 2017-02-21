@@ -9,8 +9,9 @@ var request = require('request');
 module.exports = {
   //api xac thuc nguoi dung
   authenticate: function (option, callback) {
+    console.log(sails.config.myconf.host+'/users/authenticate');
     request.post({
-      url: ' http://localhost:3000/users/authenticate',
+      url: sails.config.myconf.host+'/users/authenticate',
       form: {username: option.username, password: option.password}
     }, function (err, httpResponse, body) {
       callback(null, body);
@@ -19,25 +20,25 @@ module.exports = {
 
   //api lay thong tin user
   profile: function (option, callback) {
-    request(' http://localhost:3000/users/profile?token=' + option.token, function (error, response, body) {
+    request(sails.config.myconf.host+'/users/profile?token=' + option.token, function (error, response, body) {
       callback(null, body);
     })
   },
   //api lay thong tin user
   profileKhoa: function (option, callback) {
-    request(' http://localhost:3000/khoa/profile?token=' + option.token, function (error, response, body) {
+    request(sails.config.myconf.host+'/khoa/profile?token=' + option.token, function (error, response, body) {
       callback(null, body);
     })
   },
   //api lay thong tin user
   profileGiangVien: function (option, callback) {
-    request(' http://localhost:3000/giangvien/profile?token=' + option.token, function (error, response, body) {
+    request(sails.config.myconf.host+'/giangvien/profile?token=' + option.token, function (error, response, body) {
       callback(null, body);
     })
   },
   //api lay thong tin user
   profilePhongBan: function (option, callback) {
-    request(' http://localhost:3000/phongban/profile?token=' + option.token, function (error, response, body) {
+    request(sails.config.myconf.host+'/phongban/profile?token=' + option.token, function (error, response, body) {
       callback(null, body);
     })
   },

@@ -8,7 +8,7 @@ var request = require('request');
 
 module.exports={
   listMucDoThongBao:function (option,callback) {
-    request(' http://localhost:3000/mucdothongbao?token=' + option.token, function (error, response, body) {
+    request(sails.config.myconf.host+'/mucdothongbao?token=' + option.token, function (error, response, body) {
       // console.log(body);
       callback(null, body);
     })

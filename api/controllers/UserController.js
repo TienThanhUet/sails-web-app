@@ -15,20 +15,13 @@ module.exports = {
     Promise.all([funcLopchinhs({token: req.session.token}),funcLopMonHocs({token: req.session.token}),funcLoaiThongBao({token: req.session.token}),funcMucDoThongBao({token: req.session.token})])
       .spread(function (body1,body2,body3,body4) {
         var lopchinhs = JSON.parse(body1);
-            // console.log(body1);
         var lopMonHocs = JSON.parse(body2);
-            // console.log(body2);
         var loaithongbaos = JSON.parse(body3);
         var mucdothongbaos = JSON.parse(body4);
 
-        if (req.session.role == 'GiangVien')
-              return res.view('GiangVienViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs,lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token});//chuyen den trang giang vien
-            if (req.session.role == 'Khoa')
-              return res.view('KhoaViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs, lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token});// chuyen den trang khoa
-            if (req.session.role == 'PhongBan')
-              return res.view('PhongBanViews/homepage', {username: req.session.username,lopmonhocs:lopMonHocs, lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token});//chuyen den trang phong ban
-
-      })
+        if (req.session.role == 'GiangVien'||req.session.role =='Khoa'||req.session.role =='PhongBan')
+              return res.view(req.session.role+'Views/homepage', {username: req.session.username,lopmonhocs:lopMonHocs,lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token,host:sails.config.myconf.host});//chuyen den trang homepage
+        })
       .catch(function (err) {
         console.log(err);
         res.send(404);
@@ -57,11 +50,7 @@ module.exports = {
           //kiem tra doi tuong nguoi dung la ai ?
           if (req.session.role == 'SinhVien')
             return res.redirect('/logout');
-          if (req.session.role == 'GiangVien')
-            req.session.username = content.username;
-          if (req.session.role == 'Khoa')
-            req.session.username = content.username;
-          if (req.session.role == 'PhongBan')
+          if (req.session.role == 'GiangVien'||req.session.role == 'Khoa'||req.session.role == 'PhongBan')
             req.session.username = content.username;
           return res.redirect('/');
         })
@@ -70,10 +59,12 @@ module.exports = {
     });
 
   },
+
   logout: function (req, res) {
     req.session.destroy();
     return res.redirect('/login');
   },
+
   account: function (req, res) {
     if (req.session.role == 'GiangVien') {
       UserAPI.profileGiangVien({token: req.session.token}, function (err, body) {
@@ -109,6 +100,10 @@ module.exports = {
       })
     }
     else return res.redirect('/login')
+  },
+
+  screenLock:function (req,res) {
+    res.view('screen_lock');
   }
 };
 

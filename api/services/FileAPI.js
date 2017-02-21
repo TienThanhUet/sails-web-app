@@ -7,9 +7,11 @@ module.exports={
   sendScores: function (option,callback) {
     var listdiem=JSON.stringify(option.listdiem);
     request.post({
-      url:'http://localhost:3000/phongban/guithongbao/diem?token='+option.token,
+      url:sails.config.myconf.host+'/'+option.role+'/guithongbao/diem?token='+option.token,
       form:{list:listdiem}
     },function (err,httpResponse,body) {
+      if(err)
+        callback(err,null)
       callback(null,body);
     })
   },

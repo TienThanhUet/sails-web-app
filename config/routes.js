@@ -37,6 +37,7 @@ module.exports.routes = {
   'POST /authenticate': 'UserController.authenticate',
   'GET /logout': 'UserController.logout',
   'GET /account':'UserController.account',
+  'GET /screen-lock':'UserController.screenLock',
   //==============================
   // xu ly file
   'GET /upload-file-diem':'FileController.fileDiem',

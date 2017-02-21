@@ -59,7 +59,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
 <body>
 <!-- BEGIN HEADER -->
-<% include ./partials/page-header.ejs %>
+<% include ./../partials/page-header.ejs %>
 <!-- END HEADER -->
 <!-- BEGIN PAGE CONTAINER -->
 <div class="page-container">
@@ -108,15 +108,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="portlet-body">
           <div class="row">
             <div class="col-md-12">
-              <div class="note note-danger">
-                <p>
-                  File Upload widget with multiple file selection, drag&amp;drop support, progress bars and preview
-                  images for jQuery.<br>
-                  Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
-                  Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports
-                  standard HTML form file uploads.
-                </p>
-              </div>
               <form id="fileupload" action="/upload-file-diem" method="POST"
                     enctype="multipart/form-data">
                 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -171,21 +162,10 @@ License: You must have a valid license purchased only from themeforest(the above
               </form>
               <div class="panel panel-success">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Demo Notes</h3>
+                  <h3 class="panel-title">Hướng dẫn</h3>
                 </div>
                 <div class="panel-body">
-                  <ul>
-                    <li>
-                      The maximum file size for uploads in this demo is <strong>5 MB</strong> (default file size is
-                      unlimited).
-                    </li>
-                    <li>
-                      Only image files (<strong>DOC,DOCX, PDF, XLSX,XLS</strong>) are allowed in this demo (by default there is no
-                      file type restriction).
-                    </li>
-                    <li>
-                      Uploaded files will be deleted automatically after <strong>5 minutes</strong> (demo setting).
-                    </li>
+                  <p>Ấn Add files để thêm file điểm ,ấn start  để tải file điểm, ấn Cancel để bỏ qua hoặc kết thúc quá trình gửi file</p>
                   </ul>
                 </div>
               </div>
@@ -199,7 +179,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="portlet-title">
           <div class="caption">
             <i class="fa fa-cogs font-green-sharp"></i>
-            <span class="caption-subject font-green-sharp bold uppercase">Datatable with TableTools</span>
+            <span class="caption-subject font-green-sharp bold uppercase">Bảng Điểm</span>
           </div>
           <div class="tools">
           </div>
@@ -245,7 +225,7 @@ License: You must have a valid license purchased only from themeforest(the above
   <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
-<% include ./partials/page-footer.ejs %>
+<% include ./../partials/page-footer.ejs %>
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}

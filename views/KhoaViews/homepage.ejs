@@ -19,7 +19,6 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-  <title>UET API</title>
   <% include ./../partials/header.ejs %>
 </head>
 <!-- END HEAD -->
@@ -42,15 +41,17 @@ License: You must have a valid license purchased only from themeforest(the above
           <a href="#">Home</a><i class="fa fa-circle"></i>
         </li>
         <li class="active">
-          Bảng Điều Khiển       </li>
+          Bảng Điều Khiển
+        </li>
       </ul>
       <!-- END PAGE BREADCRUMB -->
       <!-- BEGIN PAGE CONTENT INNER -->
       <div class="row">
         <div class="col-md-12">
           <div class="note note-danger note-bordered" style="display: none">
-            <p >
-              NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
+            <p>
+              NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated
+              for demo purposes only.
             </p>
           </div>
           <!-- Begin: life time stats -->
@@ -99,90 +100,116 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <div class="portlet-body">
               <div class="table-container ">
+                <!--<form id="#fileupload" action="/send-notification" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">-->
+                <p id="value_token" style="display: none;"><%=token%></p>
+                <p id="value_host" style="display: none;"><%=host%></p>
+                <p id="value_user" style="display: none;">khoa</p>
                 <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
-                  <input type="text" class="form-control form-filter input-sm" readonly name="order_date_from" placeholder="From">
-                  <span class="input-group-btn">
+                    <input type="text" class="form-control form-filter input-sm" readonly name="datesend"
+                           placeholder="From">
+                    <span class="input-group-btn">
 											<button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
 											</span>
-                </div>
-                <table class="table table-striped table-bordered table-hover" id="datatable_ajax" >
-                  <thead>
-                  <tr role="row" class="heading">
-                    <th width="15%">
-                      Đối Tượng
-                    </th>
-                    <th widtĐh="42%">
-                      Tiêu Đề
-                    </th>
-                    <th width="20%">
-                      Thuộc Tính
-                    </th>
-                    <th width="15%">
-                      Trạng Thái
-                    </th>
-                    <th width="8%">
-                      Hành Động
-                    </th>
-                  </tr>
-                  <tr role="row" class="filter">
-                    <td>
-                        <select  name="order_status" class="form-control form-filter input-sm " style="margin-bottom: 5px;">
-                          <option value="">Select...</option>
-                          <option value="pending">Toàn Khoa</option>
-                          <option value="closed">Lớp</option>
-                          <option value="hold">Sinh Viên</option>
-                          <option value=''>Lớp Môn Học</option>
+                  </div>
+                  <table class="table table-striped table-bordered table-hover" id="datatable_ajax">
+                    <thead>
+                    <tr role="row" class="heading">
+                      <th width="15%">
+                        Đối Tượng
+                      </th>
+                      <th widtĐh="42%">
+                        Tiêu Đề
+                      </th>
+                      <th width="20%">
+                        Loại Thông Báo
+                      </th>
+                      <th width="15%">
+                        Trạng Thái
+                      </th>
+                      <th width="8%">
+                        Hành Động
+                      </th>
+                    </tr>
+                    <tr role="row" class="filter">
+                      <td>
+                        <select id="receiver" name="categoryreceiver"
+                                class="form-control form-filter input-sm " style="margin-bottom: 10px;"  onchange="receiver()">
+                          <option value="undefine receiver">Select...</option>
+                          <option value="khoa">Toàn Khoa</option>
+                          <option value="lop">Lớp</option>
+                          <option value="sinhvien">Sinh Viên</option>
+                          <option value='lopmonhoc'>Lớp Môn Học</option>
                         </select>
-                    </td>
-                    <td>
-                      <textarea type="text" class="form-control form-filter input-sm" name="order_customer_name" style=" height: 100px !important;"></textarea>
-                    </td>
-                    <td>
-                      <div  id="data-repeater-item">
-                        <select  name="order_status[0]" class="form-control form-filter input-sm " style="margin-bottom: 5px;">
-                          <option value=''>Select...</option>
-                          <option value=''>Học Bổng</option>
-                          <option value=''>Tài Chính</option>
-                          <option value=''>Tuyển sinh</option>
-                          <option value=''>Tuyển dụng</option>
-                          <option value=''>Thực Tập</option>
-                          <option value=''>Các Cuộc Thi</option>
-                          <option value=''>Hội Thảo , Nghiên Cứu</option>
-                          <option value=''>Quy chế, Quy định mới</option>
-                          <option value=''>Kết Quả Học Tập</option>
-                          <option value=''>Triệu Tập</option>
-                          <option value=''>Java</option>
-                          <option value=''>PHP</option>
-                          <option value=''>Android</option>
-                          <option value=''>Nodejs</option>
-                          <option value=''>JavaScript</option>
-                          <option value=''>C/C++</option></select>
-                      </div>
-                      <button  class="btn btn-success "  onclick="addAttribute()">
-                          <i class="fa fa-plus" ></i> Add</button>
-                      <button class="btn btn-danger " onclick="deleteAttribute()" >
-                        <i class="fa fa-close" ></i> Delete</button>
-                    </td>
-                    <td>
-                      <select name="order_status" class="form-control form-filter input-sm">
-                        <option value="pending" style="background: #4B77BE">Bình Thường </option>
-                        <option value="closed" style="background: #F7CA18">Quan trọng </option>
-                        <option value="hold" style="background: #D91E18">Khẩn</option>
-                      </select>
-                    </td>
-                    <td>
-                      <div class="margin-bottom-5">
-                        <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-send"></i> GỬI</button>
-                      </div>
-                      <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>XÓA</button>
-                    </td>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-                <div class="portlet-body form">
-                  <form class="form-horizontal form-bordered">
+                        <select id="lopchinhs" class="select2_category " name="receiverlopchinh" data-placeholder="Choose a Category"
+                                tabindex="1"
+                                style="float:right;">
+                          <% lopchinhs.forEach(function(lopchinh) { %>
+                          <option value="<%= lopchinh._id %>"><%= lopchinh.tenLopChinh %></option>
+                          <% }); %>
+                        </select>
+                        <select id="lopmonhocs" class="select2_category " name="receiverlopmonhoc" data-placeholder="Choose a Category"
+                                tabindex="1" style="float:right;">
+                          <% lopmonhocs.forEach(function(lopmonhoc) { %>
+                          <option value="<%=lopmonhoc._id%>"><%= lopmonhoc.tenLopMonHoc + " " + lopmonhoc._id %></option>
+                          <% }); %>
+                        </select>
+
+                      </td>
+                      <td>
+                      <textarea id="tieude" type="text" class="form-control form-filter input-sm" name="tieude"
+                                style=" height: 100px !important;"></textarea>
+                      </td>
+                      <td>
+                        <div id="data-repeater-item">
+                          <select id="loaithongbao" name="loaithongbao[0]" class="form-control form-filter input-sm category_notif"
+                                  style="margin-bottom: 5px;">
+                            <% loaithongbaos.forEach(function(loaithongbao) { %>
+                            <option value="<%=loaithongbao._id%>"><%= loaithongbao.tenLoaiThongBao %></option>
+                            <% }); %>
+                          </select>
+                          <!--<option value=''>Học Bổng</option>-->
+                          <!--<option value=''>Tài Chính</option>-->
+                          <!--<option value=''>Tuyển sinh</option>-->
+                          <!--<option value=''>Tuyển dụng</option>-->
+                          <!--<option value=''>Thực Tập</option>-->
+                          <!--<option value=''>Các Cuộc Thi</option>-->
+                          <!--<option value=''>Hội Thảo , Nghiên Cứu</option>-->
+                          <!--<option value=''>Quy chế, Quy định mới</option>-->
+                          <!--<option value=''>Kết Quả Học Tập</option>-->
+                          <!--<option value=''>Triệu Tập</option>-->
+                          <!--<option value=''>Java</option>-->
+                          <!--<option value=''>PHP</option>-->
+                          <!--<option value=''>Android</option>-->
+                          <!--<option value=''>Nodejs</option>-->
+                          <!--<option value=''>JavaScript</option>-->
+                          <!--<option value=''>C/C++</option>-->
+                        </div>
+                        <button class="btn btn-success " onclick="addAttribute()">
+                          <i class="fa fa-plus"></i> Add
+                        </button>
+                        <button class="btn btn-danger " onclick="deleteAttribute()">
+                          <i class="fa fa-close"></i> Delete
+                        </button>
+                      </td>
+                      <td>
+                        <select id="mucdothongbao" name="mucdothongbao" class="form-control form-filter input-sm">
+                          <% mucdothongbaos.forEach(function(mucdothongbao) { %>
+                          <option value="<%=mucdothongbao._id%>"><%= mucdothongbao.tenMucDoThongBao %></option>
+                          <% }); %>
+                        </select>
+                      </td>
+                      <td>
+                        <div class="margin-bottom-5">
+                          <div onclick="sendNotification()" class="btn btn-sm yellow  margin-bottom" ><i class="fa fa-send"></i> GỬI </div>
+                        </div>
+                        <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>XÓA</button>
+                      </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                  <div class="portlet-body form">
                     <div class="form-body">
                       <div class="form-group">
                         <div class="col-md-12">
@@ -191,12 +218,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                       </div>
                     </div>
-                  </form>
-                </div>
-                <div id="file-repeater">
-                  <input type='file' class='btn btn-primary '  name='files[0]' multiple=''></div>
-                <i class="fa fa-plus btn btn-success " onclick="addFileNoti()">Add</i>
-                <i class="fa fa-close btn btn-danger" onclick="deleteFileNoti()">Delete</i>
+                  </div>
+                  <div id="file-repeater">
+                    <input type='file' id="firstfile" class='btn btn-primary file_push' name='files[0]' multiple=''/></div>
+                  <i class="fa fa-plus btn btn-success " onclick="addFileNoti()">Add</i>
+                  <i class="fa fa-close btn btn-danger" onclick="deleteFileNoti()">Delete</i>
+                <!--</form>-->
               </div>
             </div>
           </div>
@@ -214,7 +241,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <% include ./../partials/footer.ejs %>
 </body>
 <style>
-  #datatable_ajax_wrapper .row{
+  #datatable_ajax_wrapper .row {
     display: none;
   }
 </style>

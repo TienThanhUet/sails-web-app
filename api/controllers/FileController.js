@@ -10,7 +10,7 @@ var async = require('async');
 module.exports = {
 
   fileDiem: function (req, res) {
-    return res.view('fileDiem', {username: req.session.username})
+    return res.view(req.session.role+'Views/fileDiem', {username: req.session.username})
   },
   uploadFileDiem: function (req, res) {
     req.file('filediem').upload({
@@ -160,10 +160,16 @@ module.exports = {
         ], function (err, result) {
           if (err) {
             console.error(err);
+            // res.json({result:"Phân tích bảng điểm lỗi!"})
           }
           console.log(result);
-          FileAPI.sendScores({token:req.session.token,listdiem:result},function (err,body) {
+          var role=req.session.role.toString().toLowerCase();
+          FileAPI.sendScores({token:req.session.token,role:role,listdiem:result},function (err,body) {
+            if(err){
+              // res.json({result:"Gửi dữ liệu đến service thất bại!"})
+            }
             console.log(body);
+            // res.json({result:"Gửi dữ liệu thành công"})
           })
         })
       });

@@ -19,7 +19,6 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-  <title>UET API</title>
   <% include ./../partials/header.ejs %>
 </head>
 <!-- END HEAD -->
@@ -103,6 +102,8 @@ License: You must have a valid license purchased only from themeforest(the above
               <div class="table-container ">
                 <!--<form id="#fileupload" action="/send-notification" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">-->
                 <p id="value_token" style="display: none;"><%=token%></p>
+                <p id="value_host" style="display: none;"><%=host%></p>
+                <p id="value_user" style="display: none;">phongban</p>
                 <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
                     <input type="text" class="form-control form-filter input-sm" readonly name="datesend"
                            placeholder="From">
@@ -132,7 +133,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <tr role="row" class="filter">
                       <td>
                         <select id="receiver" name="categoryreceiver"
-                                class="form-control form-filter input-sm " style="margin-bottom: 5px;">
+                                class="form-control form-filter input-sm " style="margin-bottom: 10px;" onchange="receiver()">
                           <option value="undefine receiver">Select...</option>
                           <option value="khoa">Toàn Khoa</option>
                           <option value="lop">Lớp</option>

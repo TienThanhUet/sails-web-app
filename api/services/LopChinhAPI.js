@@ -5,7 +5,7 @@ var request = require('request');
 
 module.exports={
   listLopChinh:function (option,callback) {
-    request(' http://localhost:3000/lopchinh?token=' + option.token, function (error, response, body) {
+    request(sails.config.myconf.host+'/lopchinh?token=' + option.token, function (error, response, body) {
       // console.log(body);
       callback(null, body);
     })

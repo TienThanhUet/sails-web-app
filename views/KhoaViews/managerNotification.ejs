@@ -60,7 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
 <body class="page-header-menu-fixed">
 <!-- BEGIN HEADER -->
-<% include partials/page-header.ejs %>
+<% include ./../partials/page-header.ejs %>
 <!-- END HEADER -->
 <!-- BEGIN PAGE CONTAINER -->
 <div class="page-container">
@@ -150,7 +150,8 @@ License: You must have a valid license purchased only from themeforest(the above
                   <%=notif.idLoaiThongBao.tenLoaiThongBao %>
                 </td>
                 <td>
-                  .......
+                  <%=notif.idMucDoThongBao.tenMucDoThongBao == null ? 'binh thuong' : notif.idMucDoThongBao.tenMucDoThongBao%>
+
                 </td>
               </tr>
             <% }); %>
@@ -166,7 +167,7 @@ License: You must have a valid license purchased only from themeforest(the above
   <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
-<% include partials/page-footer.ejs %>
+<% include ./../partials/page-footer.ejs %>
 </body>
 <style>
   #datatable_ajax_wrapper .row{
