@@ -141,7 +141,7 @@ module.exports = {
               gan[i] = String.fromCharCode(65 + i);
             }
             //console.log(gan[0]+kq.beginSV);
-            for (var i = kq.beginSV; i < kq.endSV; i++) {
+            for (var i = kq.beginSV; i <= kq.endSV; i++) {
               // var dem=0;
               var object = new Object({
                 tenLopMonHoc:infomationLopMonHoc.tenLopMonHoc,
