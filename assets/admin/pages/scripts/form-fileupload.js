@@ -46,9 +46,10 @@ var FormFileUpload = function () {
                 dataType: 'json',
                 context: $('#fileupload')[0]
             }).always(function () {
-                $(this).removeClass('fileupload-processing');
+                $('#fileupload').removeClass('fileupload-processing');
             }).done(function (result) {
-                $(this).fileupload('option', 'done')
+              console.log(result);
+                $('#fileupload').fileupload('option', 'done')
                 .call(this, $.Event('done'), {result: result});
             });
         }

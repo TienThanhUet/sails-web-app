@@ -306,7 +306,7 @@ var TableAdvanced = function () {
                 [1, 'asc']
             ],
             "lengthMenu": [
-                [5, 15, 20, -1],
+                [25, 50, 75, -1],
                 [25, 50, 75, "All"] // change per page values here
             ],
             // set the initial value

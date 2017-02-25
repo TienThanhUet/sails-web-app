@@ -106,7 +106,7 @@ function process(workbook) {
 
     $(".table-scores").find("tr:gt(0)").remove();
     //console.log(gan[0]+kq.beginSV);
-    for (var i = beginSV; i < endSV; i++) {
+    for (var i = beginSV; i <= endSV; i++) {
       // var dem=0;
       var object = new Object({
         STT: worksheet[gan[0] + i].v,

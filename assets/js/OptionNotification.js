@@ -64,19 +64,50 @@ function sendNotification() {
     //file
     formData.append("file_"+i, file_data[i].files[0]);
   }
-  // console.log('.......'+$('#value_token').html())
+  Metronic.startPageLoading({animate: true});
   $.ajax({
     // url:"/send-notification",
-    url:'http://localhost:3000/phongban/guithongbao?token='+$('#value_token').html(),
+    url:$('#value_host').html()+'/'+$('#value_user').html()+'/guithongbao?token='+$('#value_token').html(),
     type: 'POST',
     data: formData,
     async: true,
     success: function (data) {
+      var content =JSON.parse(data);
+      if(content.success==true)
+        var notif=content.message;
+      else var notif=content.err;
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "100",
+        "hideDuration": "1000",
+        "timeOut": "2500",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+      toastr['success'](notif, "Notifications")
       console.log(data);
-      alert(data.message);
     },
     cache: false,
     contentType: false,
     processData: false
+  }).always(function () {
+    Metronic.stopPageLoading();
   });
+}
+
+function receiver() {
+  if($('#receiver').val()=='lop'){
+    $('#s2id_lopchinhs').css('display','block')
+    $('#s2id_lopmonhocs').css('display','none')
+  }
+  else if($('#receiver').val()=='lopmonhoc'){
+    $('#s2id_lopchinhs').css('display','none')
+    $('#s2id_lopmonhocs').css('display','block')
+  }
 }
