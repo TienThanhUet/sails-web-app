@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing Notifications
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+"use strict";
 var fs = require('fs');
 var Promise = require('bluebird');
 var async = require('async');

@@ -29,69 +29,86 @@ function deleteFileNoti() {
 function showListreceiver() {
   if ($(this).val() == 'lop') {
     alert('ok ok');
-    document.getElementById('lopchinhs').style.display="block";
-    $('#lopchinhs').css('display','block');
+    document.getElementById('lopchinhs').style.display = "block";
+    $('#lopchinhs').css('display', 'block');
   }
 };
 
 function sendNotification() {
   var formData = new FormData();
   // loai nguoi nhan
-  formData.append("categoryReceiver",$('#receiver').val());
+  formData.append("categoryReceiver", $('#receiver').val());
   // id lop chinh
-  formData.append("receiverLopchinh",$('#lopchinhs').val());
+  formData.append("receiverLopchinh", $('#lopchinhs').val());
   // id lop mon hoc
-  formData.append("receiverLopmonhoc",$('#lopmonhocs').val());
+  formData.append("receiverLopmonhoc", $('#lopmonhocs').val());
   // tieu de
-  formData.append("tieuDe",$('#tieude').val());
-  var loaiTB_data=document.getElementsByClassName("category_notif");
+  formData.append("tieuDe", $('#tieude').val());
+  var loaiTB_data = document.getElementsByClassName("category_notif");
   // so luong cac loai thong bao
   // formData.append("loaithongbao_length", loaiTB_data.length);
-  var arrLoaiThongBao=[];
-  for(var i=0;i<loaiTB_data.length;i++){
-      arrLoaiThongBao.push(loaiTB_data[i].value);
+  var arrLoaiThongBao = [];
+  for (var i = 0; i < loaiTB_data.length; i++) {
+    arrLoaiThongBao.push(loaiTB_data[i].value);
   }
   // arr loai thong bao
-  formData.append("idLoaiThongBao" , arrLoaiThongBao);
+  formData.append("idLoaiThongBao", arrLoaiThongBao);
   // muc do thong bao
-  formData.append("idMucDoThongBao" ,$('#mucdothongbao').val());
+  formData.append("idMucDoThongBao", $('#mucdothongbao').val());
   // noi dung
-  formData.append("noiDung",$('#summernote_1').code());
-  var file_data=document.getElementsByClassName("file_push");
+  formData.append("noiDung", $('#summernote_1').code());
+  var file_data = document.getElementsByClassName("file_push");
   // so luong cac file
   formData.append("file_length", file_data.length);
-  for(let i=0;i<file_data.length;i++){
+  for (let i = 0; i < file_data.length; i++) {
     //file
-    formData.append("file_"+i, file_data[i].files[0]);
+    formData.append("file_" + i, file_data[i].files[0]);
   }
   Metronic.startPageLoading({animate: true});
   $.ajax({
     // url:"/send-notification",
-    url:$('#value_host').html()+'/'+$('#value_user').html()+'/guithongbao?token='+$('#value_token').html(),
+    url: $('#value_host').html() + '/' + $('#value_user').html() + '/guithongbao?token=' + $('#value_token').html(),
     type: 'POST',
     data: formData,
     async: true,
     success: function (data) {
-      var content =JSON.parse(data);
-      if(content.success==true)
-        var notif=content.message;
-      else var notif=content.err;
-      toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "positionClass": "toast-top-right",
-        "onclick": null,
-        "showDuration": "100",
-        "hideDuration": "1000",
-        "timeOut": "2500",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-      }
-      toastr['success'](notif, "Notifications")
       console.log(data);
+      Metronic.stopPageLoading();
+      var content = data;
+      toastr.options = {
+        closeButton: false,
+        debug: false,
+        positionClass: "toast-top-right",
+        onclick: null,
+        showDuration: "1000",
+        hideDuration: "1000",
+        timeOut: "2500",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+      };
+      if (content.success == true)
+        var $toast = toastr['success']("Thành Công", "Notifications");
+      else
+        var $toast = toastr['error']("Thất Bại", "Notifications");
+      $toastlast = $toast;
+      if ($toast.find('#okBtn').length) {
+        $toast.delegate('#okBtn', 'click', function () {
+          alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
+          $toast.remove();
+        });
+      }
+      if ($toast.find('#surpriseBtn').length) {
+        $toast.delegate('#surpriseBtn', 'click', function () {
+          alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
+        });
+      }
+
+      $('#clearlasttoast').click(function () {
+        toastr.clear($toastlast);
+      });
     },
     cache: false,
     contentType: false,
@@ -102,12 +119,12 @@ function sendNotification() {
 }
 
 function receiver() {
-  if($('#receiver').val()=='lop'){
-    $('#s2id_lopchinhs').css('display','block')
-    $('#s2id_lopmonhocs').css('display','none')
+  if ($('#receiver').val() == 'lop') {
+    $('#s2id_lopchinhs').css('display', 'block')
+    $('#s2id_lopmonhocs').css('display', 'none')
   }
-  else if($('#receiver').val()=='lopmonhoc'){
-    $('#s2id_lopchinhs').css('display','none')
-    $('#s2id_lopmonhocs').css('display','block')
+  else if ($('#receiver').val() == 'lopmonhoc') {
+    $('#s2id_lopchinhs').css('display', 'none')
+    $('#s2id_lopmonhocs').css('display', 'block')
   }
 }
