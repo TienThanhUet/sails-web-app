@@ -62,7 +62,7 @@ function sendNotification() {
   formData.append("file_length", file_data.length);
   for (let i = 0; i < file_data.length; i++) {
     //file
-    formData.append("file_" + i, file_data[i].files[0]);
+    formData.append("files", file_data[i].files[0]);
   }
   Metronic.startPageLoading({animate: true});
   $.ajax({
