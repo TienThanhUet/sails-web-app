@@ -89,7 +89,7 @@ module.exports = {
             //===========================
             var array = [];
             var Objects = [];
-            //var all=[];
+            var all=[];
             var mang = [];
             for (z in worksheet) {
               /* all keys that do not begin with "!" correspond to cell addresses */
@@ -144,17 +144,20 @@ module.exports = {
             for (var i = kq.beginSV; i <= kq.endSV; i++) {
               // var dem=0;
               var object = new Object({
-                tenLopMonHoc:infomationLopMonHoc.tenLopMonHoc,
                 MSV: worksheet[gan[1] + i].v,
                 diemThanhPhan: worksheet[gan[5] + i].v,
                 diemCuoiKi: worksheet[gan[6] + i].v,
                 tongDiem: worksheet[gan[7] + i].v,
-                tenGiangVien:infomationLopMonHoc.tenGiangVien,
               })
               Objects.push(object);
             }
-
-            callback(null, Objects);
+            var infoLopMonHoc={
+              tenLopMonHoc:infomationLopMonHoc.tenLopMonHoc,
+              tenGiangVien:infomationLopMonHoc.tenGiangVien,
+            };
+            all.push(infoLopMonHoc);
+            all.push(Objects);
+            callback(null, all);
           }
 
         ], function (err, result) {
@@ -164,7 +167,7 @@ module.exports = {
           }
           console.log(result);
           var role=req.session.role.toString().toLowerCase();
-          FileAPI.sendScores({token:req.session.token,role:role,listdiem:result},function (err,body) {
+          FileAPI.sendScores({token:req.session.token,role:role,infoLopMonHoc:result[0],listdiem:result[1]},function (err,body) {
             if(err){
               // res.json({result:"Gửi dữ liệu đến service thất bại!"})
             }

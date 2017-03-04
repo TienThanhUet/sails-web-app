@@ -259,6 +259,7 @@ var TableAdvanced = function () {
           sOut += '<tr><td>Nội dung:</td><td>' + aData[3] + '</td></tr>';
           sOut += '<tr><td>Loại Thông Báo:</td><td>' + aData[4] + '</td></tr>';
           sOut += '<tr><td>Trạng thái:</td><td>' + aData[5] + '</td></tr>';
+          sOut += '<tr><td>Người nhận:</td><td>' + aData[6] + '</td></tr>';
           sOut += '</table>';
 
             return sOut;

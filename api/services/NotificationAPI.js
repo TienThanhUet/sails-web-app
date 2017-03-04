@@ -16,8 +16,8 @@ module.exports={
     });
   },
 
-  listNotification:function (option,callback) {
-    request(sails.config.myconf.host+'/thongbao?token=' + option.token, function (error, response, body) {
+  listNotificationSent:function (option,callback) {
+    request(sails.config.myconf.host+'/'+option.role+'/list/thongbaodagui?token=' + option.token, function (error, response, body) {
       // console.log(body);
       callback(null, body);
     })

@@ -13,4 +13,10 @@ module.exports={
         callback(null, body);
       })
   },
+
+  listSinhVien:function (option,callback) {
+    request.get(sails.config.myconf.host+'/sinhvien/?token='+option.token,function (err,httpResponse,body) {
+      callback(null,body);
+    })
+  }
 }

@@ -108,6 +108,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                   <label><input type="checkbox" checked data-column="5">Trạng thái</label>
                 </li>
+                <li>
+                  <label><input type="checkbox" checked data-column="6">Người nhận</label>
+                </li>
               </ul>
             </div>
 
@@ -132,6 +135,9 @@ License: You must have a valid license purchased only from themeforest(the above
               <th class="hidden-xs">
                 Trạng thái
               </th>
+              <th class="hidden-xs">
+                Người nhận
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -151,7 +157,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 </td>
                 <td>
                   <%=notif.idMucDoThongBao.tenMucDoThongBao == null ? 'binh thuong' : notif.idMucDoThongBao.tenMucDoThongBao%>
-
+                </td>
+                <td>
+                  <%=notif.idReceiver %>
                 </td>
               </tr>
             <% }); %>

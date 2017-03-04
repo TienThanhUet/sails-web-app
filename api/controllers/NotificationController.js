@@ -12,8 +12,8 @@ var async = require('async');
 
 module.exports = {
   showNotification: function (req, res) {
-    var funcNotif=Promise.promisify(NotificationAPI.listNotification);
-    funcNotif({token:req.session.token}).then(function (body) {
+    var funcNotif=Promise.promisify(NotificationAPI.listNotificationSent);
+    funcNotif({token:req.session.token,role:req.session.role.toLowerCase()}).then(function (body) {
       var notifs=JSON.parse(body);
       res.view(req.session.role+'Views/managerNotification', {username: req.session.username,notifs:notifs});
     })

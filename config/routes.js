@@ -48,7 +48,7 @@ module.exports.routes = {
   'POST /send-notification': 'NotificationController.sendNotification',
   //==============================
   // khoa router
-  '/khoa/add-sinh-vien':'KhoaController.addSinhVien',
+  '/khoa/manager-sinh-vien':'KhoaController.managerSinhVien',
 
   /***************************************************************************
   *                                                                          *
