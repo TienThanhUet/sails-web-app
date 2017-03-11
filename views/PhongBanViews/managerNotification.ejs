@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEAD -->
 <head>
   <meta charset="utf-8"/>
-  <title>Metronic | Multiple File Upload</title>
+  <title>UET NOTIFIER</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -147,10 +147,11 @@ License: You must have a valid license purchased only from themeforest(the above
                 <%=notif.time %>
                 </td>
                 <td>
-                <%=notif.tieuDe %>
+                  <a href="<%='/manager-notification/details/'+notif._id %>"><%=notif.tieuDe %></a>
                 </td>
                 <td>
-                <%=notif.noiDung %>
+                  <% var noidung=notif.noiDung.toString().substring(0, 25)+'...';%>
+                  <%=noidung%>
                 </td>
                 <td>
                   <%=notif.idLoaiThongBao.tenLoaiThongBao %>

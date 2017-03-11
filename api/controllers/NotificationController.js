@@ -18,6 +18,14 @@ module.exports = {
       res.view(req.session.role+'Views/managerNotification', {username: req.session.username,notifs:notifs});
     })
   },
+  showNotificationDetails:function (req,res) {
+    var funcDetails=Promise.promisify(NotificationAPI.detailsNotificationSent);
+    funcDetails({token:req.session.token,id:req.params.Id}).then(function (body) {
+      var notif=JSON.parse(body);
+      console.log(notif);
+      res.view(req.session.role+'Views/detailsNotif', {username: req.session.username,notif:notif});
+    })
+  },
   sendNotification: function (req, res) {
     console.log(req.body);
     var notification = {

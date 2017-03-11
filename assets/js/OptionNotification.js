@@ -56,14 +56,16 @@ function sendNotification() {
   // muc do thong bao
   formData.append("idMucDoThongBao", $('#mucdothongbao').val());
   // noi dung
-  formData.append("noiDung", $('#summernote_1').code());
+  formData.append("noiDung", $('#summernote_1').code().replace(/<\/?[^>]+(>|$)/g, ""));
   var file_data = document.getElementsByClassName("file_push");
   // so luong cac file
   formData.append("file_length", file_data.length);
+  var files=[];
   for (let i = 0; i < file_data.length; i++) {
     //file
-    formData.append("files", file_data[i].files[0]);
+    files.push(file_data[i].files[0]);
   }
+  formData.append("files",files);
   Metronic.startPageLoading({animate: true});
   $.ajax({
     // url:"/send-notification",

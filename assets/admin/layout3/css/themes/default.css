@@ -9,7 +9,7 @@ body.page-md {
 }
 
 /******
-General 
+General
 ******/
 /* Theme Font Color */
 .theme-font {
@@ -39,7 +39,7 @@ General
 }
 
 /******
-Page Header 
+Page Header
 ******/
 .page-header {
   background-color: #fff;
@@ -193,7 +193,8 @@ Page Header
   background: #181b1e;
 }
 .page-header .page-header-menu {
-  background: #444d58;
+  /*background: #444d58;*/
+  background:  #1c4d90;
   /* Default Mega Menu */
   /* Light Mega Menu */
   /* Header seaech box */
@@ -372,7 +373,7 @@ Page Header
 }
 
 /******
-Page Footer 
+Page Footer
 ******/
 .page-prefooter {
   background: #48525e;

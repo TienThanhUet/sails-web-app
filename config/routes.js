@@ -45,6 +45,7 @@ module.exports.routes = {
   //==============================
   // quan ly thong bao
   'GET /manager-notification': 'NotificationController.showNotification',
+  'GET /manager-notification/details/:Id': 'NotificationController.showNotificationDetails',
   'POST /send-notification': 'NotificationController.sendNotification',
   //==============================
   // khoa router
