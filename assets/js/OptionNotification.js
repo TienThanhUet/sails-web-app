@@ -55,8 +55,6 @@ function sendNotification() {
       // id lop mon hoc
       formData.append("idReceiver", $('#lopmonhocs').val());
       break;
-    default:
-
   }
   // tieu de
   formData.append("tieuDe", $('#tieude').val());
@@ -83,6 +81,7 @@ function sendNotification() {
   }
   formData.append("files",files);
   Metronic.startPageLoading({animate: true});
+  console.log(formData);
   $.ajax({
     // url:"/send-notification",
     url: $('#value_host').html() + '/' + $('#value_user').html() + '/guithongbao?token=' + $('#value_token').html(),
