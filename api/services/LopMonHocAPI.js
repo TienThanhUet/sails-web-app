@@ -5,9 +5,11 @@ var request=require('request');
 
 module.exports={
   listLopMonHoc:function (option,callback) {
-    request(sails.config.myconf.host+'/lopmonhoc?token=' + option.token, function (error, response, body) {
-      // console.log(body);
-      callback(null, body);
+    request(sails.config.myconf.host+'/lopmonhoc?token=' + option.token, function (err, response, body) {
+      if(err)
+        callback(err,null);
+      else
+        callback(null,body);
     })
   }
 }

@@ -19,7 +19,7 @@ module.exports = {
       })
       .catch(function (err) {
         console.log(err);
-        res.send(404);
+        res.view('404');
       })
 
   }

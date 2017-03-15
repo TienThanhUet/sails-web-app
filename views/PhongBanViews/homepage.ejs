@@ -60,7 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
               <div class="caption">
                 <i class="fa fa-gift font-green-sharp"></i>
                 <span class="caption-subject font-green-sharp bold uppercase">THÊM THÔNG BÁO</span>
-                <span class="caption-helper">Add notificatin...</span>
+                <span class="caption-helper">Add notification...</span>
               </div>
               <div class="actions">
                 <a href="javascript:;" class="btn btn-default btn-circle">
@@ -134,12 +134,12 @@ License: You must have a valid license purchased only from themeforest(the above
                       <td>
                         <select id="receiver" name="categoryreceiver"
                                 class="form-control form-filter input-sm " style="margin-bottom: 10px;" onchange="receiver()">
-                          <option value="undefine receiver">Select...</option>
-                          <option value="khoa">Toàn Khoa</option>
-                          <option value="lop">Lớp</option>
-                          <option value="sinhvien">Sinh Viên</option>
-                          <option value='lopmonhoc'>Lớp Môn Học</option>
+                          <option value="Khoa">Toàn Khoa</option>
+                          <option value="LopChinh">Lớp</option>
+                          <option value="SinhVien">Sinh Viên</option>
+                          <option value="LopMonHoc">Lớp Môn Học</option>
                         </select>
+                        <input type="text" id="sinhviens" style="float: right; display: none" class="form-control">
                         <select id="lopchinhs" class="select2_category " name="receiverlopchinh" data-placeholder="Choose a Category"
                                 tabindex="1"
                                 style="float:right;">
@@ -202,7 +202,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="margin-bottom-5">
                           <div onclick="sendNotification()" class="btn btn-sm yellow  margin-bottom" ><i class="fa fa-send"></i> GỬI </div>
                         </div>
-                        <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i>XÓA</button>
+                        <button class="btn btn-sm red filter-cancel" onclick="deleteContent()"><i class="fa fa-times"></i>XÓA</button>
                       </td>
                     </tr>
                     </thead>

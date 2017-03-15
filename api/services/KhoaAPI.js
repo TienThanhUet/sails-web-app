@@ -10,13 +10,19 @@ module.exports={
         form: {username: option.username, password: option.password,tenSinhVien:option.tenSinhVien,idLopMonHoc:option.idLopMonHoc,idLopChinh:option.idLopChinh}
       },
       function (err, httpResponse, body) {
+        if(err)
+          callback(err,null)
+        else
         callback(null, body);
       })
   },
 
   listSinhVien:function (option,callback) {
     request.get(sails.config.myconf.host+'/sinhvien/?token='+option.token,function (err,httpResponse,body) {
-      callback(null,body);
+      if(err)
+        callback(err,null)
+      else
+        callback(null,body);
     })
   }
 }

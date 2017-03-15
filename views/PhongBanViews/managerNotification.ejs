@@ -147,7 +147,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 <%=notif.time %>
                 </td>
                 <td>
-                  <a href="<%='/manager-notification/details/'+notif._id %>"><%=notif.tieuDe %></a>
+                  <% var tieuDe=notif.tieuDe.toString().substring(0, 45)+'...';%>
+                  <a href="<%='/manager-notification/details/'+notif._id %>"><%=tieuDe %></a>
                 </td>
                 <td>
                   <% var noidung=notif.noiDung.toString().substring(0, 25)+'...';%>

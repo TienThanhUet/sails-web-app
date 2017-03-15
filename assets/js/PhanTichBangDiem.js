@@ -123,8 +123,6 @@ function process(workbook) {
       console.log(object);
       Objects.push(object);
     }
-    //console.log(mang.length);
-    //console.log(all.length);
     console.log(Objects);
     TableAdvanced.init();
   });

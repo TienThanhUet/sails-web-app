@@ -24,7 +24,7 @@ module.exports = {
         })
       .catch(function (err) {
         console.log(err);
-        res.send(404);
+        res.view('404');
       })
 
 
@@ -39,23 +39,29 @@ module.exports = {
   authenticate: function (req, res) {
     // xac thuc nguoi dung tu API
     UserAPI.authenticate({username: req.body.username, password: req.body.password}, function (err, body) {
-      var content = JSON.parse(body);//phan tich body
-      console.log(body);
-      if (content.message == 'Enjoy your token!') {//neu ket qua la thanh cong thi lay thong tin profile
-        req.session.token = content.token;
-        UserAPI.profile({token: req.session.token}, function (err, body) {
-          content = JSON.parse(body);
-          console.log(body);
-          req.session.role = content.role;
-          //kiem tra doi tuong nguoi dung la ai ?
-          if (req.session.role == 'SinhVien')
-            return res.redirect('/logout');
-          if (req.session.role == 'GiangVien'||req.session.role == 'Khoa'||req.session.role == 'PhongBan')
-            req.session.username = content.username;
-          return res.redirect('/');
-        })
+      if(err){
+        res.view('404')
       }
-      else return res.redirect('/login');
+      else {
+        // console.log(body);
+        console.log("User Login")
+        var content = JSON.parse(body);//phan tich body
+        if (content.message == 'Enjoy your token!') {//neu ket qua la thanh cong thi lay thong tin profile
+          req.session.token = content.token;
+          UserAPI.profile({token: req.session.token}, function (err, body) {
+            content = JSON.parse(body);
+            // console.log(body);
+            req.session.role = content.role;
+            //kiem tra doi tuong nguoi dung la ai ?
+            if (req.session.role == 'SinhVien')
+              return res.redirect('/logout');
+            if (req.session.role == 'GiangVien'||req.session.role == 'Khoa'||req.session.role == 'PhongBan')
+              req.session.username = content.username;
+            return res.redirect('/');
+          })
+        }
+        else return res.redirect('/login');
+        }
     });
 
   },
@@ -68,35 +74,47 @@ module.exports = {
   account: function (req, res) {
     if (req.session.role == 'GiangVien') {
       UserAPI.profileGiangVien({token: req.session.token}, function (err, body) {
-        var content = JSON.parse(body);
-        req.session.name = content.profile.tenKhoa;
-        return res.view('GiangVienViews/profile_account', {
-          username: req.session.username,
-          role: req.session.role,
-          name: req.session.name
-        });
+        if(err)
+          return res.view('404')
+        else{
+          var content = JSON.parse(body);
+          req.session.name = content.profile.tenKhoa;
+          return res.view('GiangVienViews/profile_account', {
+            username: req.session.username,
+            role: req.session.role,
+            name: req.session.name
+          });
+        }
       });
     }
     else if (req.session.role == 'Khoa') {
       UserAPI.profileKhoa({token: req.session.token}, function (err, body) {
-        var content = JSON.parse(body);
-        req.session.name = content.profile.tenKhoa;
-        return res.view('KhoaViews/profile_account', {
-          username: req.session.username,
-          role: req.session.role,
-          name: req.session.name
-        });
+        if(err)
+          return res.view('404')
+        else {
+          var content = JSON.parse(body);
+          req.session.name = content.profile.tenKhoa;
+          return res.view('KhoaViews/profile_account', {
+            username: req.session.username,
+            role: req.session.role,
+            name: req.session.name
+          });
+        }
       });
     }
     else if (req.session.role == 'PhongBan') {
       UserAPI.profilePhongBan({token: req.session.token}, function (err, body) {
-        var content = JSON.parse(body);
-        req.session.name = content.profile.tenPhongBan;
-        return res.view('PhongBanViews/profile_account', {
-          username: req.session.username,
-          role: req.session.role,
-          name: req.session.name
-        });
+        if(err)
+          return res.view('404')
+        else {
+          var content = JSON.parse(body);
+          req.session.name = content.profile.tenPhongBan;
+          return res.view('PhongBanViews/profile_account', {
+            username: req.session.username,
+            role: req.session.role,
+            name: req.session.name
+          });
+        }
       })
     }
     else return res.redirect('/login')

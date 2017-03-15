@@ -20,7 +20,7 @@ module.exports={
       // console.log(body);
       if (err) {
         callback(err,null);
-      }
+      }else
       callback(null, body);
     })
   },
@@ -30,7 +30,7 @@ module.exports={
       // console.log(body);
       if (err) {
         callback(err,null);
-      }
+      }else
       callback(null, body);
     })
   }

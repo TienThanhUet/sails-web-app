@@ -12,8 +12,9 @@ module.exports={
       form:{infoLopMonHoc:infoLopMonHoc,list:listdiem}
     },function (err,httpResponse,body) {
       if(err)
-        callback(err,null)
-      callback(null,body);
+        callback(err,null);
+      else
+        callback(null,body);
     })
   },
 }

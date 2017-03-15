@@ -17,6 +17,9 @@ module.exports = {
       var notifs=JSON.parse(body);
       res.view(req.session.role+'Views/managerNotification', {username: req.session.username,notifs:notifs});
     })
+      .catch(function (err) {
+        res.view('404')
+      })
   },
   showNotificationDetails:function (req,res) {
     var funcDetails=Promise.promisify(NotificationAPI.detailsNotificationSent);
@@ -25,6 +28,9 @@ module.exports = {
       console.log(notif);
       res.view(req.session.role+'Views/detailsNotif', {username: req.session.username,notif:notif});
     })
+      .catch(function (err) {
+        res.view('404')
+      })
   },
   sendNotification: function (req, res) {
     console.log(req.body);

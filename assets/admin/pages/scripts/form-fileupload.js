@@ -44,14 +44,19 @@ var FormFileUpload = function () {
                 //xhrFields: {withCredentials: true},
                 url: $('#fileupload').attr("action"),
                 dataType: 'json',
-                context: $('#fileupload')[0]
+                context: $('#fileupload')[0],
+                success:function (data) {
+                  $('#fileupload').fileupload('option', 'done');
+                  $('.fileupload-progress').removeClass('in');
+                }
             }).always(function () {
                 $('#fileupload').removeClass('fileupload-processing');
-            }).done(function (result) {
-              console.log(result);
-                $('#fileupload').fileupload('option', 'done')
-                .call(this, $.Event('done'), {result: result});
-            });
+            })
+            //   .done(function (result) {
+            //   console.log(result);
+            //     $('#fileupload').fileupload('option', 'done')
+            //     .call(this, $.Event('done'), {result: result});
+            // });
         }
 
     };

@@ -37,11 +37,27 @@ function showListreceiver() {
 function sendNotification() {
   var formData = new FormData();
   // loai nguoi nhan
-  formData.append("categoryReceiver", $('#receiver').val());
-  // id lop chinh
-  formData.append("receiverLopchinh", $('#lopchinhs').val());
-  // id lop mon hoc
-  formData.append("receiverLopmonhoc", $('#lopmonhocs').val());
+  var categoryReceiver=$('#receiver').val();
+  formData.append("categoryReceiver",categoryReceiver);
+  switch(categoryReceiver) {
+    case "Khoa":
+      formData.append("idReceiver", 'ALL');
+      break;
+    case "LopChinh":
+      // id lop chinh
+      formData.append("idReceiver", $('#lopchinhs').val());
+      break;
+    case "SinhVien":
+      //id sinhvien
+      formData.append("idReceiver", $('#sinhviens').val());
+      break;
+    case "LopMonHoc":
+      // id lop mon hoc
+      formData.append("idReceiver", $('#lopmonhocs').val());
+      break;
+    default:
+
+  }
   // tieu de
   formData.append("tieuDe", $('#tieude').val());
   var loaiTB_data = document.getElementsByClassName("category_notif");
@@ -121,12 +137,34 @@ function sendNotification() {
 }
 
 function receiver() {
-  if ($('#receiver').val() == 'lop') {
-    $('#s2id_lopchinhs').css('display', 'block')
-    $('#s2id_lopmonhocs').css('display', 'none')
+  switch($('#receiver').val()) {
+    case 'Khoa':
+      $('#s2id_lopchinhs').css('display', 'none')
+      $('#s2id_lopmonhocs').css('display', 'none')
+      $('#sinhviens').css('display', 'none')
+      break;
+    case 'LopChinh':
+      $('#s2id_lopchinhs').css('display', 'block')
+      $('#s2id_lopmonhocs').css('display', 'none')
+      $('#sinhviens').css('display', 'none')
+      break;
+    case 'SinhVien':
+      $('#s2id_lopchinhs').css('display', 'none')
+      $('#s2id_lopmonhocs').css('display', 'none')
+      $('#sinhviens').css('display', 'block')
+      break;
+    case 'LopMonHoc':
+      $('#s2id_lopchinhs').css('display', 'none')
+      $('#s2id_lopmonhocs').css('display', 'block')
+      $('#sinhviens').css('display', 'none')
+      break;
+    default:
   }
-  else if ($('#receiver').val() == 'lopmonhoc') {
-    $('#s2id_lopchinhs').css('display', 'none')
-    $('#s2id_lopmonhocs').css('display', 'block')
-  }
+}
+
+function deleteContent() {
+  $('#tieude').val('');
+  $('#summernote_1').code('');
+
+
 }
