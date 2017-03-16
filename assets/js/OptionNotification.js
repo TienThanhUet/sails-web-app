@@ -2,13 +2,12 @@
  * Created by smallmouse on 2/2/17.
  */
 var sttAttribute = 1;
-// them thuoc tinh
+// them loai thong bao
 function addAttribute() {
-  // $("#data-repeater-item").append("<select  name='loaithongbao[" + (sttAttribute++) + "]' class='form-control form-filter input-sm category_notif' style='margin-bottom: 5px;'> <option value=''>Select...</option> <option value='DiemThi'>Điểm Thi</option> <option value='LichThi'>Lịch Thi</option> <option value='LichHoc'>Lịch Học</option><option value=''>Học Bổng</option> <option value=''>Tài Chính</option> <option value=''>Tuyển sinh</option> <option value=''>Tuyển dụng</option> <option value=''>Thực Tập</option> <option value=''>Các Cuộc Thi</option> <option value=''>Hội Thảo , Nghiên Cứu</option> <option value=''>Quy chế, Quy định mới</option> <option value=''>Kết Quả Học Tập</option> <option value=''>Triệu Tập</option> <option value=''>Java</option> <option value=''>PHP</option> <option value=''>Android</option> <option value=''>Nodejs</option> <option value=''>JavaScript</option> <option value=''>C/C++</option></select>");
   $("#data-repeater-item").append("<select  name='loaithongbao[" + (sttAttribute++) + "]' class='form-control form-filter input-sm category_notif' style='margin-bottom: 5px;'> <option value='0'>Select...</option> <option value='1'>Điểm Thi</option> <option value='2'>Lịch Thi</option> <option value='3'>Lịch Học</option></select>");
 }
 
-//xoa thuoc tinh
+//xoa loai thong bao
 function deleteAttribute() {
   if (sttAttribute == 1) return;
   sttAttribute--;
@@ -74,12 +73,10 @@ function sendNotification() {
   var file_data = document.getElementsByClassName("file_push");
   // so luong cac file
   formData.append("file_length", file_data.length);
-  var files=[];
   for (let i = 0; i < file_data.length; i++) {
     //file
-    files.push(file_data[i].files[0]);
+    formData.append("files", file_data[i].files[0]);
   }
-  formData.append("files",files);
   Metronic.startPageLoading({animate: true});
   console.log(formData);
   $.ajax({
