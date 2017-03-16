@@ -24,5 +24,13 @@ module.exports={
       else
         callback(null,body);
     })
+  },
+  listKhoa:function (option,callback) {
+    request.get(sails.config.myconf.host+'/khoa/?token='+option.token,function (err,httpResponse,body) {
+      if(err)
+        callback(err,null);
+      else
+        callback(null,body);
+    })
   }
 }

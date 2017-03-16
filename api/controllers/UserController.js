@@ -12,15 +12,31 @@ module.exports = {
     var funcLopMonHocs = Promise.promisify(LopMonHocAPI.listLopMonHoc);
     var funcLoaiThongBao = Promise.promisify(LoaiThongBaoAPI.listLoaiThongBao);
     var funcMucDoThongBao = Promise.promisify(MucDoThongBaoAPI.listMucDoThongBao);
-    Promise.all([funcLopchinhs({token: req.session.token}),funcLopMonHocs({token: req.session.token}),funcLoaiThongBao({token: req.session.token}),funcMucDoThongBao({token: req.session.token})])
-      .spread(function (body1,body2,body3,body4) {
+    var funcKhoa = Promise.promisify(KhoaAPI.listKhoa);
+    Promise.all([funcLopchinhs({token: req.session.token}),
+      funcLopMonHocs({token: req.session.token}),
+      funcLoaiThongBao({token: req.session.token}),
+      funcMucDoThongBao({token: req.session.token}),
+      funcKhoa({token: req.session.token})
+    ])
+      .spread(function (body1,body2,body3,body4,body5) {
         var lopchinhs = JSON.parse(body1);
         var lopMonHocs = JSON.parse(body2);
         var loaithongbaos = JSON.parse(body3);
         var mucdothongbaos = JSON.parse(body4);
+        var khoas=JSON.parse(body5)
 
         if (req.session.role == 'GiangVien'||req.session.role =='Khoa'||req.session.role =='PhongBan')
-              return res.view(req.session.role+'Views/homepage', {username: req.session.username,lopmonhocs:lopMonHocs,lopchinhs:lopchinhs,loaithongbaos:loaithongbaos,mucdothongbaos:mucdothongbaos,token:req.session.token,host:sails.config.myconf.host});//chuyen den trang homepage
+              return res.view(req.session.role+'Views/homepage',
+                {username: req.session.username,
+                  lopmonhocs:lopMonHocs,
+                  lopchinhs:lopchinhs,
+                  loaithongbaos:loaithongbaos,
+                  mucdothongbaos:mucdothongbaos,
+                  khoas:khoas,
+                  token:req.session.token,
+                  host:sails.config.myconf.host
+                });//chuyen den trang homepage
         })
       .catch(function (err) {
         console.log(err);

@@ -134,12 +134,20 @@ License: You must have a valid license purchased only from themeforest(the above
                       <td>
                         <select id="receiver" name="categoryreceiver"
                                 class="form-control form-filter input-sm " style="margin-bottom: 10px;" onchange="receiver()">
-                          <option value="Khoa">Toàn Khoa</option>
+                          <option value="ALL">Toàn Trường</option>
+                          <option value="Khoa">Khoa</option>
                           <option value="LopChinh">Lớp</option>
                           <option value="SinhVien">Sinh Viên</option>
                           <option value="LopMonHoc">Lớp Môn Học</option>
                         </select>
                         <input type="text" id="sinhviens" style="float: right; display: none" class="form-control">
+                        <select id="khoas" class="select2_category " name="receiverkhoa" data-placeholder="Choose a Category"
+                                tabindex="1"
+                                style="float:right;">
+                          <% khoas.forEach(function(khoa) { %>
+                          <option value="<%= khoa._id %>"><%= khoa.tenKhoa %></option>
+                          <% }); %>
+                        </select>
                         <select id="lopchinhs" class="select2_category " name="receiverlopchinh" data-placeholder="Choose a Category"
                                 tabindex="1"
                                 style="float:right;">

@@ -25,22 +25,17 @@ function deleteFileNoti() {
   $('#file-repeater input:last-child').remove();
 }
 
-function showListreceiver() {
-  if ($(this).val() == 'lop') {
-    alert('ok ok');
-    document.getElementById('lopchinhs').style.display = "block";
-    $('#lopchinhs').css('display', 'block');
-  }
-};
-
 function sendNotification() {
   var formData = new FormData();
   // loai nguoi nhan
   var categoryReceiver=$('#receiver').val();
   formData.append("categoryReceiver",categoryReceiver);
   switch(categoryReceiver) {
-    case "Khoa":
+    case "ALL":
       formData.append("idReceiver", 'ALL');
+      break;
+    case "Khoa":
+      formData.append("idReceiver", $('#khoas').val());
       break;
     case "LopChinh":
       // id lop chinh
@@ -48,7 +43,8 @@ function sendNotification() {
       break;
     case "SinhVien":
       //id sinhvien
-      formData.append("idReceiver", $('#sinhviens').val());
+      var arrsinhvien=$('#sinhviens').val().toString().split(";");
+      formData.append("idReceiver", arrsinhvien);
       break;
     case "LopMonHoc":
       // id lop mon hoc
@@ -134,22 +130,32 @@ function sendNotification() {
 
 function receiver() {
   switch($('#receiver').val()) {
+    case 'ALL':
+      $('#s2id_khoas').css('display', 'none')
+      $('#s2id_lopchinhs').css('display', 'none')
+      $('#s2id_lopmonhocs').css('display', 'none')
+      $('#sinhviens').css('display', 'none')
+      break;
     case 'Khoa':
+      $('#s2id_khoas').css('display', 'block')
       $('#s2id_lopchinhs').css('display', 'none')
       $('#s2id_lopmonhocs').css('display', 'none')
       $('#sinhviens').css('display', 'none')
       break;
     case 'LopChinh':
+      $('#s2id_khoas').css('display', 'none')
       $('#s2id_lopchinhs').css('display', 'block')
       $('#s2id_lopmonhocs').css('display', 'none')
       $('#sinhviens').css('display', 'none')
       break;
     case 'SinhVien':
+      $('#s2id_khoas').css('display', 'none')
       $('#s2id_lopchinhs').css('display', 'none')
       $('#s2id_lopmonhocs').css('display', 'none')
       $('#sinhviens').css('display', 'block')
       break;
     case 'LopMonHoc':
+      $('#s2id_khoas').css('display', 'none')
       $('#s2id_lopchinhs').css('display', 'none')
       $('#s2id_lopmonhocs').css('display', 'block')
       $('#sinhviens').css('display', 'none')
