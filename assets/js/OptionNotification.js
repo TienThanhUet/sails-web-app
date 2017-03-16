@@ -43,7 +43,7 @@ function sendNotification() {
       break;
     case "SinhVien":
       //id sinhvien
-      var arrsinhvien=$('#sinhviens').val().toString().split(";");
+      var arrsinhvien=$('#sinhviens').val().toString().split(",");
       formData.append("idReceiver", arrsinhvien);
       break;
     case "LopMonHoc":
@@ -74,7 +74,6 @@ function sendNotification() {
     formData.append("files", file_data[i].files[0]);
   }
   Metronic.startPageLoading({animate: true});
-  console.log(formData);
   $.ajax({
     // url:"/send-notification",
     url: $('#value_host').html() + '/' + $('#value_user').html() + '/guithongbao?token=' + $('#value_token').html(),
