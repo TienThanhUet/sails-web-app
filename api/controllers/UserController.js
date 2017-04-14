@@ -47,7 +47,7 @@ module.exports = {
   },
 
   login: function (req, res) {
-    if (req.session.token != null) {
+    if (req.session.token) {
       return res.redirect('/');
     } else return res.view('login');
   },

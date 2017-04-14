@@ -13,8 +13,10 @@ module.exports = {
       url: sails.config.myconf.host+'/users/authenticate',
       form: {username: option.username, password: option.password}
     }, function (err, httpResponse, body) {
-      if(err)
-        callback(err,null);
+      if(err) {
+        console.log(err);
+        callback(err, null);
+      }
       else
         callback(null,body);
     })

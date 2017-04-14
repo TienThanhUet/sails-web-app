@@ -1,6 +1,7 @@
 /**
  * Created by smallmouse on 1/20/17.
  */
+
 module.exports = function(req, res, next) {
 
   // User is allowed, proceed to the next policy,

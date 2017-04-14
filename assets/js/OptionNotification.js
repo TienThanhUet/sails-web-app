@@ -43,7 +43,11 @@ function sendNotification() {
       break;
     case "SinhVien":
       //id sinhvien
-      var arrsinhvien=$('#sinhviens').val().toString().split(",");
+      var arrsinhvien=[]
+      var split=$('#sinhviens').val().toString().split(",");
+      split.forEach(function (sinhvien) {
+        arrsinhvien.push(sinhvien.trim());
+      })
       formData.append("idReceiver", arrsinhvien);
       break;
     case "LopMonHoc":
@@ -81,7 +85,6 @@ function sendNotification() {
     data: formData,
     async: true,
     success: function (data) {
-      console.log(data);
       Metronic.stopPageLoading();
       var content = data;
       toastr.options = {

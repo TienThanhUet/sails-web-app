@@ -54,6 +54,7 @@ module.exports.policies = {
   UserController:{
     homepage:'sessionAuth',
     account:'sessionAuth',
+    login:'isHTTPS',
   },
   KhoaController:{
     '*':'KhoaAuth'

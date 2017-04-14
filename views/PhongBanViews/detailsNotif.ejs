@@ -120,7 +120,7 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             </div>
           <div class="col-md-10 portlet light" >
-            <h3>Comments</h3>
+            <h3>FeedBacks</h3>
             <ul id="comments-list" class="comments-list">
               <li >
                 <div class="comment-main-level">
@@ -221,7 +221,7 @@ License: You must have a valid license purchased only from themeforest(the above
                   </label>
                   <textarea class="col-md-10 form-control" rows="8"></textarea>
                 </div>
-                <button class="margin-top-20 btn blue" type="submit">Post a Comment</button>
+                <button class="margin-top-20 btn blue" id="send-feedback">Post a Comment</button>
               </form>
             </div>
           </div>
@@ -257,11 +257,13 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="/admin/layout3/scripts/layout.js" type="text/javascript"></script>
 <script src="/admin/layout3/scripts/demo.js" type="text/javascript"></script>
+<script src="/js/detailsNotif.js" type="text/javascript"></script>
 <script>
   jQuery(document).ready(function() {
     Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
     Demo.init(); // init demo features
+    detailsNotif.init();
   });
 </script>
 <!-- END JAVASCRIPTS -->

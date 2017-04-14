@@ -2,7 +2,7 @@
   "name": "sail-app",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
+  "description": "UETNotifer",
   "keywords": [],
   "dependencies": {
     "bluebird": "^3.4.7",

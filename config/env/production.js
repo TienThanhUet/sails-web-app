@@ -11,7 +11,15 @@
  */
 
 module.exports = {
-
+  ssl: {
+    ca: require('fs').readFileSync(__dirname + '/ssl/ca.crt'),
+    key: require('fs').readFileSync(__dirname + '/ssl/key.key'),
+    cert: require('fs').readFileSync(__dirname + '/ssl/cert.crt')
+  },
+  port: 443,
+  policies: {
+    '*': 'isHTTPS'
+  }
   /***************************************************************************
    * Set the default database connection for models in the production        *
    * environment (see config/connections.js and config/models.js )           *
